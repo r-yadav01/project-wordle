@@ -1,23 +1,22 @@
 import React from 'react';
 import { range } from '../../utils';
 
-function Guess({ wordObj }) {
-  let letters = [];
-
-  if (wordObj) {
-    let word = wordObj.name;
-    letters = [...word];
-  }
+function Guess({ wordInfo }) {
+  if (wordInfo === undefined) wordInfo = [];
 
   return (
     <p className='guess'>
       {range(5).map((index) => {
+        let currentLetter = wordInfo[index];
+        if (currentLetter === undefined)
+          currentLetter = { letter: '', status: '' };
+
         return (
           <span
-            className='cell'
+            className={`cell ${currentLetter.status}`}
             key={index}
           >
-            {letters[index]}
+            {currentLetter.letter}
           </span>
         );
       })}

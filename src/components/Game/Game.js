@@ -6,6 +6,7 @@ import { WORDS } from '../../data';
 import UserInput from '../UserInput/UserInput';
 import Guess from '../Guess/Guess';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { checkGuess } from '../../game-helpers';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -21,7 +22,7 @@ function Game() {
       <div className='guess-results'>
         {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
           <Guess
-            wordObj={inputList[num]}
+            wordInfo={inputList[num]}
             key={num}
           ></Guess>
         ))}
@@ -31,9 +32,11 @@ function Game() {
     </>
   );
 
+  // will only run after the user enters a value
   function addGuess(guess) {
-    const guessObj = { name: guess, id: Math.random() };
-    const newList = [...inputList, guessObj];
+    const resultOfCheck = checkGuess(guess, answer);
+    console.info({ resultOfCheck });
+    const newList = [...inputList, resultOfCheck];
     setInputList(newList);
   }
 }
