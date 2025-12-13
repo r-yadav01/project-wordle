@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserInput() {
+function UserInput({ addGuess }) {
   const [guess, setGuess] = React.useState('');
 
   return (
@@ -17,6 +17,7 @@ function UserInput() {
           }
 
           console.info({ guess });
+          addGuess(guess);
           setGuess('');
         }}
       >
@@ -25,7 +26,8 @@ function UserInput() {
           id='guess-input'
           type='text'
           required
-          minLength={5}
+          title='Must enter a 5 letter word'
+          pattern='[A-Za-z]{5}'
           maxLength={5}
           name='guessInput'
           value={guess}
