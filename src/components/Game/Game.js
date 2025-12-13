@@ -4,7 +4,6 @@ import { sample } from '../../utils';
 import { range } from '../../utils';
 import { WORDS } from '../../data';
 import UserInput from '../UserInput/UserInput';
-// import RenderGuesses from '../RenderGuesses/RenderGuesses';
 import Guess from '../Guess/Guess';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
@@ -22,13 +21,11 @@ function Game() {
       <div className='guess-results'>
         {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
           <Guess
-            word={inputList[num]}
+            wordObj={inputList[num]}
             key={num}
           ></Guess>
         ))}
       </div>
-
-      {/* <RenderGuesses guesses={inputList}></RenderGuesses> */}
 
       <UserInput addGuess={addGuess}></UserInput>
     </>

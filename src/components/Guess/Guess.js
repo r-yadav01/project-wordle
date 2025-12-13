@@ -1,24 +1,26 @@
 import React from 'react';
 import { range } from '../../utils';
 
-function Guess({ word }) {
+function Guess({ wordObj }) {
   let letters = [];
 
-  if (word) {
-    word = word.name;
+  if (wordObj) {
+    let word = wordObj.name;
     letters = [...word];
   }
 
   return (
     <p className='guess'>
-      {range(5).map((index) => (
-        <span
-          className='cell'
-          key={index}
-        >
-          {letters[index]}
-        </span>
-      ))}
+      {range(5).map((index) => {
+        return (
+          <span
+            className='cell'
+            key={index}
+          >
+            {letters[index]}
+          </span>
+        );
+      })}
     </p>
   );
 }
