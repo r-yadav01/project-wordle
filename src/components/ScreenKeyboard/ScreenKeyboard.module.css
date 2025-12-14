@@ -1,0 +1,16 @@
+.keyboard {
+  text-align: center;
+}
+
+.row {
+  margin-bottom: 0.25rem;
+}
+
+.key {
+  padding: 0.25rem;
+  font-size: 1rem;
+  background-color: lightgrey;
+  margin-left: 0.25rem;
+  color: black;
+  border-radius: 4px;
+}

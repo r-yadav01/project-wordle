@@ -8,6 +8,7 @@ import Guess from '../Guess/Guess';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import { checkGuess } from '../../game-helpers';
 import DeclareResult from '../DeclareResult/DeclareResult';
+import ScreenKeyboard from '../ScreenKeyboard/ScreenKeyboard';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -43,6 +44,8 @@ function Game() {
           attempt={inputList.length}
         ></DeclareResult>
       )}
+
+      <ScreenKeyboard></ScreenKeyboard>
 
       {declareLose && (
         <DeclareResult
