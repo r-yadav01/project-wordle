@@ -21,6 +21,7 @@ function Game() {
   const [totalAttempt, setTotalAttempt] = React.useState(0);
   const [declareWin, setDeclareWin] = React.useState(false);
   const [declareLose, setDeclareLose] = React.useState(false);
+  const [resultOfCheck, setResultOfCheck] = React.useState(undefined);
 
   return (
     <>
@@ -45,7 +46,7 @@ function Game() {
         ></DeclareResult>
       )}
 
-      <ScreenKeyboard></ScreenKeyboard>
+      <ScreenKeyboard enteredData={resultOfCheck}></ScreenKeyboard>
 
       {declareLose && (
         <DeclareResult
@@ -58,21 +59,22 @@ function Game() {
 
   // will only run after the user enters a value
   function addGuess(guess) {
-    const resultOfCheck = checkGuess(guess, answer);
-    const matchResult = checkWinCondition(resultOfCheck);
+    const result = checkGuess(guess, answer);
+    const matchResult = checkWinCondition(result);
+    setResultOfCheck(result);
 
     if (matchResult === 'win') {
       setDeclareWin(true);
     } else {
       setTotalAttempt(totalAttempt + 1);
-      console.info({ totalAttempt });
+      // console.info({ totalAttempt });
       if (totalAttempt === NUM_OF_GUESSES_ALLOWED - 1) {
         setDeclareLose(true);
       }
     }
 
     // console.info({ resultOfCheck }, { declareWin }, { declareLose });
-    const newList = [...inputList, resultOfCheck];
+    const newList = [...inputList, result];
     // console.info({ newList });
 
     setInputList(newList);
